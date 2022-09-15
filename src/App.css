@@ -15,18 +15,35 @@ body {
 
 }
 
-.toolbar {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+
+/*NAVBAR*/
+
+header {
   min-height: 80px;
   box-shadow: 0px 0px 10px 0px;
   margin-bottom: 100px;
+
 }
 
-.toolbar h2 {
-  font-size: 60px;
+.nav {
+  display: flex;
+  margin: 30px;
+  min-height: 80px;
+  width: 100%;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-around;
 }
+
+.nav a {
+  text-decoration: none;
+}
+
+.nav a h1:hover {
+  color: #c85000;
+}
+
+
 
 .button-5 {
   align-items: center;
@@ -56,6 +73,7 @@ body {
   touch-action: manipulation;
   vertical-align: baseline;
   width: auto;
+  margin: 20px;
 
 }
 
@@ -93,4 +111,117 @@ body {
   justify-content: center;
   background-color: rgb(255 223 183);
   box-shadow: 0px 0px 10px 0px;
+}
+
+.home {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.home h2 {
+  font-size: 4rem;
+}
+
+.show {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.show h2 {
+  font-size: 4rem;
+}
+
+.update {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.update h2 {
+  font-size: 4rem;
+}
+
+.create {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.create h2 {
+  font-size: 4rem;
+}
+
+.home p {
+  font-size: 1.75rem;
+}
+
+.doccontainer {
+  width: 90%;
+  margin: 10px auto;
+  background-color: #fff;
+  border: 3px solid black;
+  min-height: 50px;
+}
+
+.createcontainer {
+  display: flex;
+  min-width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+
+}
+
+.createcontainer label {
+  font-size: 30px;
+  color: #c85000;
+}
+
+.createcontainer input {
+  height: 50px;
+  width: 300px;
+  border: transparent;
+  margin: 10px;
+  color: #fb8332;
+  padding: 10px;
+}
+
+.doctable {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+
+  margin: 50px auto;
+}
+
+.doctable td,
+.doctable th {
+  border: 1px solid #252525;
+}
+
+.doctable td {
+  background-color: white;
+  padding: 10px 20px;
+
+}
+
+
+
+
+.doctable tr:hover {
+  background-color: #ddd;
+}
+
+.doctable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #fb8332;
+  color: white;
+}
+
+.small {
+  margin: 5px;
 }
