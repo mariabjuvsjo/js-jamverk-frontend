@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import docModel from '../models/docs';
+import DocTable from './DocTable';
 import { useNavigate, Link, useParams, generatePath } from "react-router-dom";
 
 export default
     function ShowDocs() {
+
 
 
 
@@ -18,46 +20,33 @@ export default
     useEffect(() => {
         (async () => {
             await fetchDocs();
+
+
         })();
     }, []);
 
-
+    let docTable = docs.map((doc, index) => {
+        return <DocTable doc={doc} key={index} />
+    })
 
     return (
-        <>
 
+        <div>
             <table className="doctable">
                 <thead>
                     <tr>
                         <th>Doc Name</th>
-
                         <th>Action</th>
 
                     </tr>
-
                 </thead>
                 <tbody>
 
-                    {docs && docs.map((doc, index) => (
-                        <tr>
-                            <td key={index + "hello"}>{doc.name}</td>
-
-
-
-
-
-                            <td>
-
-                                <Link to={"/update/" + doc._id} className="button-5 small" >
-                                    Edit
-                                </Link></td>
-
-
-                        </tr>
-
-                    ))}
+                    {docTable}
                 </tbody>
             </table>
-        </>
+
+        </div>
+
     );
 }

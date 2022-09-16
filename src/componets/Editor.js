@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import docModel from '../models/docs';
 import { useNavigate } from "react-router-dom";
-import parse from "html-react-parser";
+//import parse from "html-react-parser";
 
 export default function Editor() {
     const [newDoc, setNewDoc] = useState({});
     let newObject = {};
+    const refe = useRef();
     const routing = useNavigate();
 
     function changeName(event) {
@@ -19,7 +20,7 @@ export default function Editor() {
     }
 
     function changeText(event) {
-        newObject["text"] = parse(event).props.children;
+        newObject["text"] = event;
 
 
 
@@ -63,6 +64,7 @@ export default function Editor() {
                     name="text"
                     //value="editor.getContents()"
                     onChange={changeText}
+                    ref={refe}
 
                 />
             </div>

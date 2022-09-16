@@ -34,7 +34,7 @@ function App() {
               element={<Show />}
             />
             <Route
-              path="/update/:id"
+              path="/update"
               element={<Update />}
 
             />

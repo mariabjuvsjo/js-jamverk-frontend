@@ -180,6 +180,7 @@ header {
   color: #c85000;
 }
 
+
 .createcontainer input {
   height: 50px;
   width: 300px;
@@ -187,6 +188,8 @@ header {
   margin: 10px;
   color: #fb8332;
   padding: 10px;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .doctable {
@@ -220,6 +223,11 @@ header {
   text-align: center;
   background-color: #fb8332;
   color: white;
+}
+
+.doctable .docname {
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .small {
