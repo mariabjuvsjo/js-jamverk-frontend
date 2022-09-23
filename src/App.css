@@ -192,42 +192,10 @@ header {
   font-size: 20px;
 }
 
-.doctable {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-
-  margin: 50px auto;
-}
-
-.doctable td,
-.doctable th {
-  border: 1px solid #252525;
-}
-
-.doctable td {
-  background-color: white;
+.docWrapp {
+  border: 3px solid black;
   padding: 10px 20px;
-
-}
-
-
-
-
-.doctable tr:hover {
-  background-color: #ddd;
-}
-
-.doctable th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: center;
-  background-color: #fb8332;
-  color: white;
-}
-
-.doctable .docname {
-  font-size: 20px;
-  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .small {

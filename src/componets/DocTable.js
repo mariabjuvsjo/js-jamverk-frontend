@@ -9,7 +9,7 @@ export default function DocTable({ doc, index }) {
     }
 
     return (
-        <div>
+        <div className="docWrapp">
             <h3 className="docname">{doc.name}</h3>
 
             <button onClick={handleEdit} className="button-5 small" >
