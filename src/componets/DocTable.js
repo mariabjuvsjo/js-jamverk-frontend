@@ -9,20 +9,13 @@ export default function DocTable({ doc, index }) {
     }
 
     return (
+        <div>
+            <h3 className="docname">{doc.name}</h3>
 
-        <tr>
-            <td className="docname">{doc.name}</td>
-            <td>
-                <button onClick={handleEdit} className="button-5 small" >
-                    Edit
-                </button>
-            </td>
-        </tr>
-
-
-
-
-
+            <button onClick={handleEdit} className="button-5 small" >
+                Edit
+            </button>
+        </div>
     )
 
 }

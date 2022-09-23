@@ -2,14 +2,14 @@ import React, { useState, useRef } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import docModel from '../models/docs';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, BrowserRouter, Router, Route } from "react-router-dom";
 //import parse from "html-react-parser";
 
 export default function Editor() {
     const [newDoc, setNewDoc] = useState({});
     let newObject = {};
     const refe = useRef();
-    const routing = useNavigate();
+    const navigate = useNavigate();
 
     function changeName(event) {
 
@@ -30,7 +30,8 @@ export default function Editor() {
     async function saveText() {
         await docModel.createDoc(newDoc);
 
-        routing("/show")
+        navigate("/show")
+
 
 
 
@@ -43,13 +44,15 @@ export default function Editor() {
         <>
 
             <div className='createcontainer'>
-                <label>Name of Document: </label>
+                <label data-testid="labelInput">Name of Document:</label>
                 <input
                     type="text"
+                    data-testid="input"
                     placeholder="Add Name of document"
                     onChange={changeName}
                     name="name"
                     className="name-text"
+                    required
 
                 />
                 <div className='toolbar'>
@@ -65,6 +68,7 @@ export default function Editor() {
                     //value="editor.getContents()"
                     onChange={changeText}
                     ref={refe}
+                    required
 
                 />
             </div>

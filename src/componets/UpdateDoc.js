@@ -60,6 +60,7 @@ function UpdateDoc() {
                 <label>Name of Document: </label>
                 <input
                     type="text"
+                    data-testid="updated"
                     placeholder='Add name on document'
                     defaultValue={newDoc.name}
                     onChange={changeName}

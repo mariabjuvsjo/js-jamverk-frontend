@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import docModel from '../models/docs';
 import DocTable from './DocTable';
-import { useNavigate, Link, useParams, generatePath } from "react-router-dom";
+//import { useNavigate, Link, useParams, generatePath } from "react-router-dom";
 
 export default
     function ShowDocs() {
@@ -31,22 +31,13 @@ export default
 
     return (
 
+
+
         <div>
-            <table className="doctable">
-                <thead>
-                    <tr>
-                        <th>Doc Name</th>
-                        <th>Action</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-
-                    {docTable}
-                </tbody>
-            </table>
+            {docTable}
 
         </div>
+
 
     );
 }
