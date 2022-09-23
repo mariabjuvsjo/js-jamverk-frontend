@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import docModel from '../models/docs';
-import { useNavigate, BrowserRouter, Router, Route } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 //import parse from "html-react-parser";
 
 export default function Editor() {

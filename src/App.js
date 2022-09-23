@@ -1,7 +1,5 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import docModel from './models/docs';
-import { useEffect, useState } from 'react';
 
 //PAGES and components
 
