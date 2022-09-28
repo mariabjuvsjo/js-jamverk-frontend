@@ -10,7 +10,7 @@ const Navbar = () => {
                     <h1>Home</h1>
                 </Link>
 
-                <Link to="/show">
+                <Link to="/documents">
                     <h1>Documents</h1>
                 </Link>
 

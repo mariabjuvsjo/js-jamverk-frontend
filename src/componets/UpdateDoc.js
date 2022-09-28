@@ -95,7 +95,7 @@ export default function UpdateDoc() {
     async function saveText() {
 
 
-        navigate("/show")
+        navigate("/documents")
         //submitFunction();
     }
 

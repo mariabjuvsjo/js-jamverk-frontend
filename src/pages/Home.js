@@ -10,7 +10,7 @@ const Home = () => {
             <h2>Text Editor</h2>
 
             <CreateDoc />
-            <p>Choose a name for your document to create a new one or go to  <Link to="/show">
+            <p>Choose a name for your document to create a new one or go to  <Link to="/documents">
                 Documents
             </Link> to edit one</p>
         </div>

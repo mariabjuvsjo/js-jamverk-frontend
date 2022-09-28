@@ -21,7 +21,7 @@ export default
         console.log(newDoc)
         await docModel.createDoc(newDoc);
 
-        navigate("/show")
+        navigate("/documents")
         //submitFunction();
     }
 
