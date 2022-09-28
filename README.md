@@ -1,6 +1,13 @@
 ## TEXT EDITOR WITH REACT
 
-Added a text editor to wabsite with react-quill
+A realtime text editor where two user can write in the same documents from diffrent clients
 
-User can write text and push a save button and the text is printed in the console.
+Using io.sockets
 
+REACT
+
+MONGOOSE
+
+EXPRESS
+
+NODE
