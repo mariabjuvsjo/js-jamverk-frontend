@@ -1,6 +1,8 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 
+
+
 //PAGES and components
 
 import Navbar from './componets/Navbar';
@@ -8,6 +10,10 @@ import Home from './pages/Home';
 import Create from './pages/Create';
 import Show from './pages/Show';
 import Update from './pages/Update';
+
+
+
+
 
 function App() {
 
@@ -21,6 +27,7 @@ function App() {
           <Routes>
             <Route
               path="/"
+              exact
               element={<Home />}
             />
             <Route
@@ -28,11 +35,11 @@ function App() {
               element={<Create />}
             />
             <Route
-              path="/Show"
+              path="/documents"
               element={<Show />}
             />
             <Route
-              path="/update"
+              path="/update/:id"
               element={<Update />}
 
             />

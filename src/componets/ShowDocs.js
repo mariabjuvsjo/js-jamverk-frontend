@@ -33,7 +33,7 @@ export default
 
 
 
-        <div>
+        <div className='grid-doc'>
             {docTable}
 
         </div>

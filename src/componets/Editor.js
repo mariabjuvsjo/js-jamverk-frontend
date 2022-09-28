@@ -1,78 +1,81 @@
-import React, { useState, useRef } from 'react';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import docModel from '../models/docs';
-import { useNavigate } from "react-router-dom";
+/*import io from "socket.io-client";
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+import Quill from 'quill';
+import 'quill/dist/quill.snow.css';
+
 //import parse from "html-react-parser";
 
+
+//const socket = io.connect("http://localhost:3001")
+
 export default function Editor() {
-    const [newDoc, setNewDoc] = useState({});
-    let newObject = {};
-    const refe = useRef();
-    const navigate = useNavigate();
+    //
+    const [socket, setSocket] = useState();
+    const [quill, setQuill] = useState();
 
-    function changeName(event) {
+    const refe = useCallback((wrapper) => {
+        if (wrapper == null) return
+        wrapper.innerHTML = '';
+        const textEditor = document.createElement('div')
+        wrapper.append(textEditor)
+        const q = new Quill(textEditor, { theme: "snow" })
+        setQuill(q)
+    }, [])
 
+    useEffect(() => {
+        const s = io("http://localhost:3001")
+        setSocket(s)
 
-        newObject[event.target.name] = event.target.value;
-
-        setNewDoc({ ...newDoc, ...newObject });
-    }
-
-    function changeText(event) {
-        newObject["text"] = event;
-
-
-
-        setNewDoc({ ...newDoc, ...newObject });
-    }
-
-    async function saveText() {
-        await docModel.createDoc(newDoc);
-
-        navigate("/show")
+        return () => {
+            s.disconnect()
+        }
 
 
+    }, [])
 
 
+    useEffect(() => {
+        if (socket == null || quill == null) return
+        const changer = (delta, oldDelta, source) => {
+            if (source !== 'user') return
+            socket.emit('send-changes', delta)
+        }
 
-        //submitFunction();
-    }
+        quill.on('text-change', changer)
+
+        return () => {
+            quill.off('text-change', changer)
+        }
+    }, [socket, quill])
+
+    useEffect(() => {
+        if (socket == null || quill == null) return
+        const changer = (delta) => {
+            quill.updateContents(delta)
+        }
+
+        socket.on('receive-changes', changer)
+
+        return () => {
+            socket.off('receive-changes', changer)
+        }
+    }, [socket, quill])
+
 
 
     return (
         <>
 
             <div className='createcontainer'>
-                <label data-testid="labelInput">Name of Document:</label>
-                <input
-                    type="text"
-                    data-testid="input"
-                    placeholder="Add Name of document"
-                    onChange={changeName}
-                    name="name"
-                    className="name-text"
-                    required
 
-                />
-                <div className='toolbar'>
-                    <button className="button-5" type="button" onClick={saveText}>
-                        Save
-                    </button>
+
+                <div className="quill" ref={refe}>
+
                 </div>
 
-                <ReactQuill
-                    placeholder="Add text to document"
-                    //value={text}
-                    name="text"
-                    //value="editor.getContents()"
-                    onChange={changeText}
-                    ref={refe}
-                    required
 
-                />
             </div>
 
         </>
     )
-}
+}*/

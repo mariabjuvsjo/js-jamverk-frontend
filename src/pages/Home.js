@@ -1,11 +1,18 @@
+import CreateDoc from "../componets/CreateDoc"
+import { Link } from 'react-router-dom'
+
 const Home = () => {
 
 
 
     return (
         <div className="home">
-            <h2>Home</h2>
-            <p>Welcome To this text editor. Where you can create, update and view your documents</p>
+            <h2>Text Editor</h2>
+
+            <CreateDoc />
+            <p>Choose a name for your document to create a new one or go to  <Link to="/show">
+                Documents
+            </Link> to edit one</p>
         </div>
     )
 }
