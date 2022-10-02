@@ -1,22 +1,19 @@
+import useUser from '../hooks/useUser';
+
+
 const docModel = {
     baseUrl: window.location.href.includes("localhost") ?
         "http://localhost:3001" : "https://jsramverk-editor-mabs21.azurewebsites.net",
 
-    getAllDocs: async function getAllDocs() {
-
-        const response = await fetch(`${docModel.baseUrl}/text`);
-        const docs = await response.json();
 
 
-        return docs;
-    },
-
-    createDoc: async function createDoc(newDoc) {
+    createDoc: async function createDoc(newDoc, tok) {
         const response = await fetch(`${docModel.baseUrl}/text`, {
             method: 'POST',
             body: JSON.stringify(newDoc),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${tok}`
             }
         });
 

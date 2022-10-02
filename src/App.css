@@ -10,7 +10,7 @@ body {
 
 
 .App {
-  background-color: #f5f5f5;
+  background-color: #252525;
   min-height: 100vh;
 
 }
@@ -101,6 +101,7 @@ header {
   margin: 1rem;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
   background-color: white;
+  color: #252525;
 }
 
 .quill .ql-container.ql-snow {
@@ -150,7 +151,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(255 223 183);
+  background-color: #252525;
   box-shadow: 0px 0px 10px 0px;
 }
 
@@ -270,7 +271,7 @@ header {
   border-bottom: 2px solid gray;
   outline: 0;
   font-size: 1.3rem;
-  color: black;
+  color: #fa6400;
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
@@ -281,4 +282,62 @@ header {
   color: black;
   font-weight: 100;
   text-transform: uppercase;
+}
+
+.signin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.signin form {
+  height: 520px;
+  z-index: 11;
+  width: 400px;
+  background-color: rgba(255, 255, 255, 0.13);
+
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+  padding: 50px 35px;
+}
+
+.signin form * {
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  outline: none;
+  border: none;
+}
+
+.signin form h3 {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 42px;
+  text-align: center;
+}
+
+.signin label {
+  display: block;
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.signin input {
+  display: block;
+  height: 50px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 3px;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.signin ::placeholder {
+  color: #e5e5e5;
 }

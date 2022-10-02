@@ -1,9 +1,11 @@
 import docModel from '../models/docs';
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
+import useUser from '../hooks/useUser';
 export default
     function CreateDoc() {
     const [newDoc, setNewDoc] = useState({});
+    const { auth } = useUser()
     let newObject = {};
     const navigate = useNavigate();
 
@@ -19,7 +21,7 @@ export default
 
     async function saveText() {
         console.log(newDoc)
-        await docModel.createDoc(newDoc);
+        await docModel.createDoc(newDoc, auth.token);
 
         navigate("/documents")
         //submitFunction();
