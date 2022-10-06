@@ -40,16 +40,17 @@ function App() {
               path="/register"
               element={<Register />}
             />
-            <Route
-              path="/"
-              exact
-              element={<Home />}
-            />
+
             <Route element={<ReqUser />}>
               {/* protect routes */}
               <Route
                 path="/create"
                 element={<Create />}
+              />
+              <Route
+                path="/"
+                exact
+                element={<Home />}
               />
               <Route
                 path="/documents"

@@ -15,7 +15,7 @@ export default function UpdateDoc() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const s = io("https://jsramverk-editor-mabs21.azurewebsites.net")
+        const s = io("https://jsramverk-editor-mabs21.azurewebsites.net/")
         setSocket(s)
 
         return () => {

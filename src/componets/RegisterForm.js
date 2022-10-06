@@ -30,6 +30,7 @@ export default function RegisterForm() {
 
         try {
             await userModel.regUser(informa)
+            console.log(informa)
             navigate(`/create`)
 
 
@@ -62,6 +63,7 @@ export default function RegisterForm() {
 
             <label htmlFor="password">Password</label>
             <input type="password" placeholder="Password" id="password" name="password" value={password} onChange={handleForm} required />
+
 
             <button className="button-5">Register</button>
 
