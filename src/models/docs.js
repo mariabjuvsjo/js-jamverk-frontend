@@ -36,8 +36,8 @@ const docModel = {
 
     },
 
-    updateOneDoc: async function updateOneDoc(newDoc) {
-        const response = await fetch(`${docModel.baseUrl}/text/${newDoc._id}`,
+    updateOneDoc: async function updateOneDoc(newDoc, id) {
+        const response = await fetch(`${docModel.baseUrl}/text/${id}`,
             {
                 method: 'PATCH',
                 body: JSON.stringify(newDoc),

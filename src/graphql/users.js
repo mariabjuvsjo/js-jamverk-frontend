@@ -1,5 +1,5 @@
-import { gql, useQuery } from "@apollo/client";
-
+//import { gql, useQuery } from "@apollo/client";
+/** 
 const GET_USERS = gql`
 query getUsers {
     users {
@@ -11,4 +11,12 @@ query getUsers {
 }
 `;
 
-export { GET_USERS }
+const DELETE_USER = gql`
+mutation deleteUser($id: ID!) {
+    deleteUser(id: $id){
+        id
+        name
+    }
+}`
+
+export { GET_USERS, DELETE_USER }*/

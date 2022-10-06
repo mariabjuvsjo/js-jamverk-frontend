@@ -14,6 +14,7 @@ import SignIn from './pages/SignIn';
 import Register from './pages/Register';
 import ReqUser from './componets/ReqUser';
 import LogOut from './componets/LogOut';
+import Users from './pages/Users';
 
 
 
@@ -48,6 +49,10 @@ function App() {
                 element={<Create />}
               />
               <Route
+                path="/users"
+                element={<Users />}
+              />
+              <Route
                 path="/"
                 exact
                 element={<Home />}
@@ -60,6 +65,7 @@ function App() {
                 path="/update/:id"
                 element={<Update />}
               />
+
               <Route
                 path="/logout"
                 element={<LogOut />}

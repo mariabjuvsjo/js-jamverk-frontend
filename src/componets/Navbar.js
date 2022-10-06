@@ -28,6 +28,9 @@ const Navbar = () => {
                         <Link to="/logout">
                             <h1>Log Out</h1>
                         </Link>
+                        <Link to="/users">
+                            <h1>Users</h1>
+                        </Link>
                     </>
 
                     : <> <Link to="/register">

@@ -11,25 +11,70 @@ export default
 
     const [docs, setDocs] = useState([]);
 
+    console.log(auth._id)
+
+    const GET_DOC = `
+   {
+        docsbyUserId(user: "${auth._id}") {
+          name,
+          id
+        }
+      }
+    `
+
 
 
 
     async function fetchDocs() {
         //const allDocs = await docModel.getAllDocs();
 
+        try {
+            const response = await fetch(`${docModel.baseUrl}/text`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${auth.token}`,
+                },
+            });
+            const docs = await response.json();
 
-        const response = await fetch(`${docModel.baseUrl}/text`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${auth.token}`,
-            },
-        });
-        const docs = await response.json();
+
+            setDocs(docs);
+
+        } catch (err) {
+            console.log("no docs")
+        }
 
 
-        setDocs(docs);
+
+
     }
+
+
+    /* async function fetchDocs2() {
+         //const allDocs = await docModel.getAllDocs();
+ 
+ 
+         const response = await fetch(`${docModel.baseUrl}/graphql`, {
+             method: "POST",
+             headers: {
+                 "Content-Type": "application/json",
+                 'Accept': 'application/json',
+             },
+             body: JSON.stringify({ query: GET_DOC })
+         });
+         const res = await response.json();
+ 
+         const docs = res.data.docsbyUserId
+ 
+ 
+         setDocs(docs);
+ 
+ 
+     };*/
+
+
+
 
 
     useEffect(() => {
@@ -44,15 +89,20 @@ export default
         return <DocTable doc={doc} key={index} />
     })
 
-    return (
 
-
-
-        <div className='grid-doc'>
+    if (docTable.length > 0) {
+        return <div className='grid-doc'>
             {docTable}
 
-        </div>
+        </div>;
+    } else {
+        return <p>No documents created</p>;
+    }
 
 
-    );
+
+
+
+
+
 }
