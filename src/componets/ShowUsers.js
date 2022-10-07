@@ -63,26 +63,20 @@ export default function ShowUsers() {
     return (
         <>
 
-            <table className='x'>
+            <table className='user-table'>
                 <thead>
                     <tr>
+                        <th>User ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Username</th>
-                        <th></th>
-                    </tr>
 
+                    </tr>
                 </thead>
                 <tbody>
-
                     {userTable}
-
-
                 </tbody>
             </table>
-
-
         </>
-
     )
 };

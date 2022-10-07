@@ -346,3 +346,15 @@ header {
 .signin ::placeholder {
   color: #e5e5e5;
 }
+
+.user-table td,
+tr {
+  border: 1px solid white;
+  padding: 10px 15px;
+}
+
+.user-table th {
+  background-color: azure;
+  padding: 10px 15px;
+
+}
