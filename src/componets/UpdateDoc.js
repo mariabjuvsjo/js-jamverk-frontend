@@ -1,5 +1,8 @@
 import { io } from "socket.io-client";
-import React, { useState, useEffect, useCallback } from 'react';
+
+import { pdfExporter } from 'quill-to-pdf';
+import { saveAs } from 'file-saver';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 //import docModel from '../models/docs';
@@ -14,6 +17,8 @@ export default function UpdateDoc() {
     const [socket, setSocket] = useState();
     const [quill, setQuill] = useState();
     const navigate = useNavigate();
+    const pdfexportwithcomponents = useRef(null);
+    const pdfwmethod = useRef(null)
 
     useEffect(() => {
         const s = io("https://jsramverk-editor-mabs21.azurewebsites.net/")
@@ -30,7 +35,7 @@ export default function UpdateDoc() {
         if (socket == null || quill == null) return
 
         socket.once('load-document', document => {
-            console.log(document)
+
             quill.setContents(document)
             quill.enable()
         })
@@ -90,14 +95,30 @@ export default function UpdateDoc() {
         q.disable()
         //q.setText("lets type....")
         setQuill(q)
+
+
+
     }, [])
 
 
-    async function saveText() {
+    async function saveText(e) {
 
 
         navigate("/documents")
-        //submitFunction();
+
+    }
+
+    async function savePdf(e) {
+        //pdfexportwithcomponents.current.save();
+
+        const quillDelta = quill.getContents();
+        console.log(quillDelta)
+        const toPdf = await pdfExporter.generatePdf(quillDelta)
+
+        saveAs(toPdf, `${docId}.pdf`)
+
+
+
     }
 
     return (
@@ -105,11 +126,16 @@ export default function UpdateDoc() {
             <button className="button-5" type="button" onClick={saveText}>
                 Edit Finish
             </button>
+            <button className="button-5" type="button" onClick={savePdf}>
+                export to PDF
+            </button>
+
             <div className="quill" ref={refe}>
 
             </div>
 
         </>
+
 
     )
 }
