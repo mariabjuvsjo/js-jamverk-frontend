@@ -5,14 +5,18 @@ body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
-  color: rgb(255 165 53);
+
 }
 
 
 .App {
   background-color: #252525;
   min-height: 100vh;
+  color: #fa6400;
+}
 
+.App a {
+  color: #fa6400;
 }
 
 
@@ -22,6 +26,8 @@ header {
   min-height: 80px;
   box-shadow: 0px 0px 10px 0px;
   margin-bottom: 100px;
+  color: #fa6400;
+  text-align: center;
 
 }
 
@@ -77,6 +83,18 @@ header {
 
 }
 
+.small {
+  font-size: 14px;
+  padding: 2px;
+  line-height: unset;
+}
+
+.comment-inner-wrapp {
+  border: 1px solid lightgray;
+  margin: 10px;
+  padding: 5px;
+}
+
 .button-5:hover,
 .button-5:focus {
   background-color: #fb8332;
@@ -102,9 +120,10 @@ header {
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
   background-color: white;
   color: #252525;
+
 }
 
-.quill .ql-container.ql-snow {
+.quill .ql-container .ql-snow {
   border: none;
   display: flex;
   justify-content: center;
@@ -131,7 +150,7 @@ header {
   }
 
   .quill .ql-editor {
-    width: 6.5in;
+    width: 5in;
     height: 9in;
     padding: 0;
     margin: 0;
@@ -182,8 +201,9 @@ header {
 
 .update {
   display: flex;
-  align-items: center;
-  flex-direction: column;
+  justify-content: space-evenly;
+
+
 }
 
 .update h2 {
@@ -357,4 +377,24 @@ tr {
   background-color: azure;
   padding: 10px 15px;
 
+}
+
+.comment-wrapp {
+  border: 1px solid lightgray;
+  padding: 20px;
+}
+
+.users-wrapp {
+  border: 1px solid lightgray;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.users-wrapp h3 {
+  margin-bottom: 10px;
+}
+
+.users-wrapp button {
+  margin-bottom: 5px;
 }

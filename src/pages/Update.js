@@ -1,6 +1,6 @@
 import UpdateDoc from "../componets/UpdateDoc"
-import Users from "../componets/Users"
-import { useNavigate, useLocation, useParams } from "react-router-dom";
+
+import { useParams } from "react-router-dom";
 const Update = () => {
 
     const { id } = useParams()
@@ -10,7 +10,6 @@ const Update = () => {
 
     return (
         <div className="update">
-            <h2>Update</h2>
 
             <UpdateDoc />
         </div>

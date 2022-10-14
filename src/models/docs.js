@@ -25,9 +25,16 @@ const docModel = {
 
     },
 
-    getOneDoc: async function getOneDoc(id) {
+    getOneDoc: async function getOneDoc(id, tok) {
 
-        const response = await fetch(`${docModel.baseUrl}/text/${id}`);
+        const response = await fetch(`${docModel.baseUrl}/text/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${tok}`
+            }
+
+        });
         const doc = await response.json();
 
 

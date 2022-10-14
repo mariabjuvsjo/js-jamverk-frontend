@@ -45,6 +45,7 @@ const Navbar = () => {
 
 
             </nav>
+            <p>Welcome {auth.username}</p>
         </header >
     )
 }

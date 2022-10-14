@@ -27,19 +27,24 @@ export default
 
     async function fetchDocs() {
         //const allDocs = await docModel.getAllDocs();
+        let accessDocs = []
 
         try {
-            const response = await fetch(`${docModel.baseUrl}/text`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${auth.token}`,
-                },
-            });
+            const response = await fetch(`${docModel.baseUrl}/text`);
             const docs = await response.json();
 
+            console.log(docs)
 
-            setDocs(docs);
+            docs.forEach(doc => {
+                if (doc.user.includes(auth._id) || doc.allowed_users.includes(auth.username)) {
+                    accessDocs.push(doc)
+                }
+            });
+
+            console.log(accessDocs)
+
+
+            setDocs(accessDocs);
 
         } catch (err) {
             console.log("no docs")
@@ -50,33 +55,6 @@ export default
 
     }
 
-
-    /* async function fetchDocs2() {
-         //const allDocs = await docModel.getAllDocs();
- 
- 
-         const response = await fetch(`${docModel.baseUrl}/graphql`, {
-             method: "POST",
-             headers: {
-                 "Content-Type": "application/json",
-                 'Accept': 'application/json',
-             },
-             body: JSON.stringify({ query: GET_DOC })
-         });
-         const res = await response.json();
- 
-         const docs = res.data.docsbyUserId
- 
- 
-         setDocs(docs);
- 
- 
-     };*/
-
-
-
-
-
     useEffect(() => {
         (async () => {
             await fetchDocs();
@@ -84,6 +62,8 @@ export default
 
         })();
     }, []);
+
+    console.log(docs)
 
     let docTable = docs.map((doc, index) => {
         return <DocTable doc={doc} key={index} />
