@@ -1,5 +1,5 @@
+require('dotenv').config();
 import { io } from "socket.io-client";
-
 import { pdfExporter } from 'quill-to-pdf';
 import { saveAs } from 'file-saver';
 import React, { useState, useEffect, useCallback, useRef } from 'react';
@@ -10,6 +10,10 @@ import Comments from "./Comments";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import docModel from "../models/docs";
 import useUser from '../hooks/useUser';
+
+const sgMail = require('@sendgrid/mail');
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 
 const SAVE_AFTER_3000 = 3000
@@ -30,7 +34,7 @@ export default function UpdateDoc() {
     const { state } = useLocation();
     const docId = (state._id);
     const { auth } = useUser();
-    const [showComments, setShowComments] = useState([]);
+    const [invite, setInvite] = useState('');
     const [socket, setSocket] = useState();
     const [quill, setQuill] = useState();
     const [comments, setComments] = useState([]);
@@ -253,22 +257,50 @@ export default function UpdateDoc() {
     }
 
     async function addUser(e) {
-        let allowed_users = e.target.value
+        e.preventDefault()
+        let allowed_users = invite
+
+        const msg = {
+            to: allowed_users,
+            from: 'mariabjuv@gmail.com',
+            subject: 'Edit a document with friends',
+            text: 'You got asked to join your team and edit a document klick the link to register today',
+            html: `<a href="https://www.student.bth.se/~mabs21/editor">Click to sign UP</a> `
+
+        }
         try {
 
-            console.log(allowed_users)
+            console.log(typeof allowed_users)
+
 
             await docModel.updateOneDoc({ allowed_users }, docId)
+
+
+            //await docModel.sendEmail(allowed_users)
 
         } catch (err) {
             alert("user already added")
 
         }
 
+        try {
+            await sgMail.send(msg);
+            alert("message sent")
+        } catch (err) {
+            alert("msg not sent")
+        }
+
 
 
     }
 
+    const handleForm = (e) => {
+        setInvite
+            (e.target.value
+            )
+
+        console.log(invite)
+    }
 
 
 
@@ -283,7 +315,7 @@ export default function UpdateDoc() {
 
     let usersTable = users.map((user, index) => {
         if (users.length > 0) {
-            return <button type="button" onClick={addUser} value={user.username}>{user.username}</button>
+            return <button type="button" value={user.username}>{user.username}</button>
 
         } else {
             return <p>No allowed users</p>;
@@ -297,7 +329,10 @@ export default function UpdateDoc() {
     console.log('after')
     return (
         <>
-            <div className="users-wrapp"> <h3>Add allowed Users for document:  </h3>{usersTable}</div>
+            <div className="users-wrapp"> <h3>Invite a user for this document:  </h3>
+                <form onSubmit={addUser}> <input type="text" placeholder="Email" id="allowed_users" name="allowed_users" onChange={handleForm} />
+                    <button lassName="button-5">Send</button>
+                </form></div>
             <div>
                 <div className="button-wrapp">
                     <button className="button-5" type="button" onClick={saveText}>

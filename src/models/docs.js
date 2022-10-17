@@ -57,6 +57,21 @@ const docModel = {
 
         console.log(docs);
 
+    },
+
+    sendEmail: async function sendEmail(email) {
+        const response = await fetch(`${docModel.baseUrl}/email`,
+            {
+                method: 'POST',
+                body: JSON.stringify(email),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+        const sent = await response.json();
+
+        console.log(sent);
     }
 }
 export default docModel;
