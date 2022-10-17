@@ -11,9 +11,9 @@ import { useNavigate, useLocation, useParams } from "react-router-dom";
 import docModel from "../models/docs";
 import useUser from '../hooks/useUser';
 
-const sgMail = require('@sendgrid/mail');
+//const sgMail = require('@sendgrid/mail');
 
-sgMail.setApiKey(process.env.REACT_APP_SENDGRID_API_KEY)
+//sgMail.setApiKey(process.env.REACT_APP_SENDGRID_API_KEY)
 
 
 const SAVE_AFTER_3000 = 3000
@@ -260,31 +260,16 @@ export default function UpdateDoc() {
         e.preventDefault()
         let allowed_users = invite
 
-        const msg = {
-            to: allowed_users,
-            from: 'mariabjuv@gmail.com',
-            subject: 'Edit a document with friends',
-            text: 'You got asked to join your team and edit a document klick the link to register today',
-            html: `<a href="https://www.student.bth.se/~mabs21/editor">Click to sign UP</a> `
-
-        }
         try {
-
             console.log(typeof allowed_users)
-
-
             await docModel.updateOneDoc({ allowed_users }, docId)
-
-
-            //await docModel.sendEmail(allowed_users)
-
         } catch (err) {
             alert("user already added")
 
         }
 
         try {
-            await sgMail.send(msg);
+            await docModel.sendEmail(allowed_users)
             alert("message sent")
         } catch (err) {
             alert("msg not sent")
