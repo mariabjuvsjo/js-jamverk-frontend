@@ -13,7 +13,7 @@ import useUser from '../hooks/useUser';
 
 const sgMail = require('@sendgrid/mail');
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+sgMail.setApiKey(process.env.REACT_APP_SENDGRID_API_KEY)
 
 
 const SAVE_AFTER_3000 = 3000
