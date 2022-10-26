@@ -1,4 +1,4 @@
-require('dotenv').config();
+
 import { io } from "socket.io-client";
 import { pdfExporter } from 'quill-to-pdf';
 import { saveAs } from 'file-saver';
@@ -35,6 +35,9 @@ export default function UpdateDoc() {
     const docId = (state._id);
     const { auth } = useUser();
     const [invite, setInvite] = useState('');
+    const [inputs, setInputs] = useState({
+        email: '',
+    })
     const [socket, setSocket] = useState();
     const [quill, setQuill] = useState();
     const [comments, setComments] = useState([]);
@@ -258,6 +261,18 @@ export default function UpdateDoc() {
 
     async function addUser(e) {
         e.preventDefault()
+
+        const res = await fetch(`${docModel.baseUrl}/apimail`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(inputs)
+        })
+        const text = await res.json()
+
+        console.log(text)
+
         let allowed_users = invite
 
         try {
@@ -267,24 +282,18 @@ export default function UpdateDoc() {
             alert("user already added")
 
         }
-
-        try {
-            await docModel.sendEmail(allowed_users)
-            alert("message sent")
-        } catch (err) {
-            alert("msg not sent")
-        }
-
-
-
     }
 
     const handleForm = (e) => {
         setInvite
             (e.target.value
             )
+        setInputs(prev => ({
+            ...prev,
+            [e.target.id]: e.target.value
+        }))
 
-        console.log(invite)
+        console.log(inputs)
     }
 
 
@@ -315,7 +324,7 @@ export default function UpdateDoc() {
     return (
         <>
             <div className="users-wrapp"> <h3>Invite a user for this document:  </h3>
-                <form onSubmit={addUser}> <input type="text" placeholder="Email" id="allowed_users" name="allowed_users" onChange={handleForm} />
+                <form onSubmit={addUser}> <input type="text" placeholder="Email" id="email" name="allowed_users" onChange={handleForm} />
                     <button lassName="button-5">Send</button>
                 </form></div>
             <div>

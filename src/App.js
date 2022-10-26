@@ -71,11 +71,7 @@ function App() {
                 element={<LogOut />}
               />
             </Route>
-
           </Routes>
-
-
-
         </div>
 
       </div >
