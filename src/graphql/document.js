@@ -12,14 +12,7 @@ query getDocs{
 }
 `;
 
-const DOCS_BY_USER_ID = gql`
-query docsbyUserId($user: ID!) {
-    docsbyUserId(user: $user) {
-      name,
-      id
-    }
-  }
-`;
+
 
 //mutation
 const UPDATE_DOC = gql`

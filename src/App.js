@@ -15,6 +15,8 @@ import Register from './pages/Register';
 import ReqUser from './componets/ReqUser';
 import LogOut from './componets/LogOut';
 import Users from './pages/Users';
+import Invite from './pages/Invite';
+import CodeMode from './pages/CodeMode';
 
 
 
@@ -49,6 +51,10 @@ function App() {
                 element={<Create />}
               />
               <Route
+                path="/invite/:id"
+                element={<Invite />}
+              />
+              <Route
                 path="/users"
                 element={<Users />}
               />
@@ -64,6 +70,10 @@ function App() {
               <Route
                 path="/update/:id"
                 element={<Update />}
+              />
+              <Route
+                path="/codemode/:id"
+                element={<CodeMode />}
               />
 
               <Route

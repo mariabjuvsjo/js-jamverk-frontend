@@ -18,8 +18,16 @@ export default
         setNewDoc({ ...newDoc, ...newObject });
     }
 
+    function handleSelect(event) {
+        newObject[event.target.name] = event.target.value;
 
-    async function saveText() {
+        setNewDoc({ ...newDoc, ...newObject });
+
+    }
+
+
+    async function saveText(e) {
+        e.preventDefault()
         console.log(newDoc)
         await docModel.createDoc(newDoc, auth.token);
 
@@ -32,23 +40,30 @@ export default
 
     return (
         <>
-            <input
-                type="text"
-                data-testid="input"
-                placeholder="Name of document"
-                onChange={changeName}
-                name="name"
-                className="name-text"
-                required
+            <form onSubmit={saveText}>
+                <input
+                    type="text"
+                    data-testid="input"
+                    placeholder="Name of document"
+                    onChange={changeName}
+                    name="name"
+                    className="name-text"
+                    required
 
-            />
-            <div className='toolbar'>
+                />
+                <select onChange={handleSelect} name="docType">
+                    <option>Select mode: </option>
+                    <option value={"text"}>Text</option>
+                    <option value={"code"}>Code</option>
+                </select>
+                <div className='toolbar'>
 
-                <button className="button-5" type="button" onClick={saveText}>
-                    Create
-                </button>
+                    <button className="button-5">
+                        Create
+                    </button>
 
-            </div>
+                </div>
+            </form>
         </>
 
 

@@ -7,7 +7,7 @@ import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 //import docModel from '../models/docs';
 import Comments from "./Comments";
-import { useNavigate, useLocation, useParams } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import docModel from "../models/docs";
 import useUser from '../hooks/useUser';
 
@@ -34,10 +34,6 @@ export default function UpdateDoc() {
     const { state } = useLocation();
     const docId = (state._id);
     const { auth } = useUser();
-    const [invite, setInvite] = useState('');
-    const [inputs, setInputs] = useState({
-        email: '',
-    })
     const [socket, setSocket] = useState();
     const [quill, setQuill] = useState();
     const [comments, setComments] = useState([]);
@@ -254,50 +250,6 @@ export default function UpdateDoc() {
         quill.setSelection(connection.range.index, connection.range.length)
     }
 
-    function removeComments() {
-        setComments
-            ([])
-    }
-
-    async function addUser(e) {
-        e.preventDefault()
-
-        const res = await fetch(`${docModel.baseUrl}/apimail`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(inputs)
-        })
-        const text = await res.json()
-
-        console.log(text)
-
-        let allowed_users = invite
-
-        try {
-            console.log(typeof allowed_users)
-            await docModel.updateOneDoc({ allowed_users }, docId)
-        } catch (err) {
-            alert("user already added")
-
-        }
-    }
-
-    const handleForm = (e) => {
-        setInvite
-            (e.target.value
-            )
-        setInputs(prev => ({
-            ...prev,
-            [e.target.id]: e.target.value
-        }))
-
-        console.log(inputs)
-    }
-
-
-
     let commentTable = comments.map((comm, index) => {
         if (comments.length > 0) {
             return <button type="button" onClick={findCommentText} value={index}>{comm.comment}</button>
@@ -318,22 +270,13 @@ export default function UpdateDoc() {
 
     })
 
-
-
-    console.log('after')
     return (
         <>
-            <div className="users-wrapp"> <h3>Invite a user for this document:  </h3>
-                <form onSubmit={addUser}> <input type="text" placeholder="Email" id="email" name="allowed_users" onChange={handleForm} />
-                    <button lassName="button-5">Send</button>
-                </form></div>
+
             <div>
                 <div className="button-wrapp">
                     <button className="button-5" type="button" onClick={saveText}>
                         Edit Finish
-                    </button>
-                    <button className="button-5" type="button" onClick={removeComments}>
-                        Remove Comments
                     </button>
                     <button className="button-5" type="button" onClick={savePdf}>
                         export to PDF

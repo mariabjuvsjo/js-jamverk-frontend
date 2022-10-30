@@ -89,6 +89,14 @@ header {
   line-height: unset;
 }
 
+.modal {
+  color: #00FF00;
+  background-color: #252525;
+  border: 1px solid white;
+}
+
+
+
 .comment-inner-wrapp {
   border: 1px solid lightgray;
   margin: 10px;
@@ -109,6 +117,10 @@ header {
   background-color: #c85000;
   box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
   transform: translateY(0);
+}
+
+.modal:hover {
+  background-color: #0e600e;
 }
 
 /*EDITOR*/
@@ -270,21 +282,20 @@ header {
   margin: 10px;
   width: 150px;
   height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
   cursor: pointer;
   font-size: 20px;
-
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
 
 }
 
-.docWrapp:hover {
-  padding: 20px 30px;
-  color: #fa6400;
-  font-weight: bold;
+.docWrapp p {
+  grid-column: 1 / -1;
 }
+
+
 
 .small {
   margin: 5px;
@@ -397,4 +408,20 @@ tr {
 
 .users-wrapp button {
   margin-bottom: 5px;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  margin-right: 50px;
+}
+
+.code-div {
+  background-color: #F3F3F3;
+  height: 300px;
 }

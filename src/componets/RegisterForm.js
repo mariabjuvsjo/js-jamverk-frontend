@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "../models/axios";
 import userModel from "../models/users";
 
 const REG_URL = '/users/reg'
