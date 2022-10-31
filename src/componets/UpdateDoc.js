@@ -2,19 +2,12 @@
 import { io } from "socket.io-client";
 import { pdfExporter } from 'quill-to-pdf';
 import { saveAs } from 'file-saver';
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
-//import docModel from '../models/docs';
-import Comments from "./Comments";
 import { useNavigate, useLocation } from "react-router-dom";
 import docModel from "../models/docs";
 import useUser from '../hooks/useUser';
-
-//const sgMail = require('@sendgrid/mail');
-
-//sgMail.setApiKey(process.env.REACT_APP_SENDGRID_API_KEY)
-
 
 const SAVE_AFTER_3000 = 3000
 
@@ -259,16 +252,7 @@ export default function UpdateDoc() {
 
     })
 
-    let usersTable = users.map((user, index) => {
-        if (users.length > 0) {
-            return <button type="button" value={user.username}>{user.username}</button>
 
-        } else {
-            return <p>No allowed users</p>;
-        }
-
-
-    })
 
     return (
         <>

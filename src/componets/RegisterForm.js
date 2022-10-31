@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import userModel from "../models/users";
 
-const REG_URL = '/users/reg'
 
 
 export default function RegisterForm() {

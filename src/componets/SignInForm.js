@@ -1,5 +1,5 @@
 import { useNavigate, Link, useLocation } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
+import { useState } from "react";
 import userModel from "../models/users";
 import useUser from "../hooks/useUser";
 

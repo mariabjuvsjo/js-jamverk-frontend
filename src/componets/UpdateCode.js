@@ -1,5 +1,5 @@
 import Editor from '@monaco-editor/react'
-import { useNavigate, useLocation, useParams } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import docModel from "../models/docs";
 import useUser from '../hooks/useUser';
 import codeModal from '../models/codeExe';
@@ -27,7 +27,6 @@ Modal.setAppElement('#root');
 export default function UpdateCode() {
     const { state } = useLocation();
     const docId = (state._id);
-    const { auth } = useUser();
     const [code, setCode] = useState('')
     const [codeRes, setCodeRes] = useState('')
     const editorRef = useRef(null)
@@ -57,7 +56,6 @@ export default function UpdateCode() {
         });
         const res = await response.json();
 
-        console.log(res.data.doc.code)
 
         setCode(res.data.doc.code)
     }

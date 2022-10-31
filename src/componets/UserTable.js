@@ -1,32 +1,7 @@
-import docModel from "../models/docs";
+
 
 export default function UserTable({ user }) {
 
-
-
-
-    /* async function deleteUser() {
-         console.log(user.id)
- 
-         const response = await fetch(`${docModel.baseUrl}/graphql`, {
-             method: "POST",
-             headers: {
-                 "Content-Type": "application/json",
-                 'Accept': 'application/json',
-             },
-             body: JSON.stringify({
-                 query: ` 
-             mutation{
-             deleteUser(id: "${user.id}"){
-                 id
-                 username
-             }
-         }` })
-         });
-         const res = await response.json();
- 
-         console.log(res)
-     }*/
     return (
 
 

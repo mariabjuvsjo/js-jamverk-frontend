@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { useNavigate, useLocation, useParams } from "react-router-dom";
+import React, { useState } from 'react';
+import { useLocation } from "react-router-dom";
 import docModel from "../models/docs";
-import useUser from '../hooks/useUser';
 
 export default function InviteDoc() {
     const [inputs, setInputs] = useState({
@@ -9,7 +8,7 @@ export default function InviteDoc() {
     })
     const { state } = useLocation();
     const docId = (state._id);
-    const { auth } = useUser();
+
     const [invite, setInvite] = useState('');
 
     const handleForm = (e) => {
@@ -28,20 +27,6 @@ export default function InviteDoc() {
     async function addUser(e) {
         e.preventDefault()
 
-        const res = await fetch(`${docModel.baseUrl}/text/email`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            body: JSON.stringify(inputs)
-        })
-        const text = await res.json()
-
-        return text
-
-        console.log(text)
-
         let allowed_users = invite
 
         try {
@@ -51,6 +36,20 @@ export default function InviteDoc() {
             alert("user already added")
 
         }
+
+        const res = await fetch(`${docModel.baseUrl}/text/email`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(inputs)
+        })
+        const text = await res.json()
+
+        return text
+
+
+
     }
 
 

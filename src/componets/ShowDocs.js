@@ -14,20 +14,6 @@ export default
 
     const [codeDocs, setCodeDocs] = useState([]);
 
-    console.log(auth._id)
-
-    const GET_DOC = `
-   {
-        docsbyUserId(user: "${auth._id}") {
-          name,
-          id
-        }
-      }
-    `
-
-
-
-
     async function fetchDocs() {
         //const allDocs = await docModel.getAllDocs();
         let accessDocs = []
@@ -36,7 +22,6 @@ export default
             const response = await fetch(`${docModel.baseUrl}/text`);
             const docs = await response.json();
 
-            console.log(docs)
 
             docs.forEach(doc => {
                 if (doc.user.includes(auth._id) || doc.allowed_users.includes(auth.username)) {
@@ -44,7 +29,6 @@ export default
                 }
             });
 
-            console.log(accessDocs)
 
             let codeMode = [];
 

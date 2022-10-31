@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import docModel from "../models/docs";
-import useUser from '../hooks/useUser';
 import UserTable from "./UserTable";
 
 
 
 export default function ShowUsers() {
-    const { auth } = useUser()
+    //const { auth } = useUser()
 
     const [users, setUsers] = useState([]);
 
@@ -21,12 +20,8 @@ export default function ShowUsers() {
       }
      `
 
-    //const { loading, error, data } = useQuery(GET_USERS)
-    //console.log(data)
 
     async function fetchUser() {
-        //const allDocs = await docModel.getAllDocs();
-
 
         const response = await fetch(`${docModel.baseUrl}/graphql`, {
             method: "POST",
@@ -37,11 +32,6 @@ export default function ShowUsers() {
             body: JSON.stringify({ query: USER_QUERY })
         });
         const res = await response.json();
-
-        console.log(res)
-
-
-
 
         setUsers(res.data.users);
     }
